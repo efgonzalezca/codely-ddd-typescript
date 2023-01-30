@@ -1,0 +1,1 @@
+export { UserPutController } from './UserPutController';
