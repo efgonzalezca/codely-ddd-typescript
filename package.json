@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/api/index.ts",
+    "dev": "cross-env NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/api/index.ts",
     "test": "npm run test:unit && npm run test:features",
-    "test:features": "NODE_ENV=test npx cucumber-js -p api --publish",
-    "test:unit": "NODE_ENV=test jest"
+    "test:features": "cross-env NODE_ENV=test npx cucumber-js -p api --publish",
+    "test:unit": "cross-env NODE_ENV=test jest"
   },
   "keywords": [],
   "author": "",
@@ -15,12 +15,14 @@
   "dependencies": {
     "bson": "^4.7.2",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.14.3",
     "glob": "^8.1.0",
     "http-status": "^1.6.2",
     "node-dependency-injection": "^3.0.3",
+    "npm": "^9.4.2",
     "socket.io": "^4.5.4",
     "uninstall": "^0.0.0",
     "uuid": "^9.0.0"

@@ -1,10 +1,15 @@
-export class User {
-  readonly id: string;
-  readonly names: string;
-  readonly surnames: string;
-  readonly document: string;
+import { UserNames } from './UserNames';
+import { UserSurnames } from './UserSurnames';
+import { UserDocument } from './UserDocument';
+import { UserId } from '../../shared/config/domain/Users/UserId';
 
-  constructor(id: string, names: string, surnames: string, document: string) {
+export class User {
+  readonly id: UserId;
+  readonly names: UserNames;
+  readonly surnames: UserSurnames;
+  readonly document: UserDocument;
+
+  constructor(id: UserId, names: UserNames, surnames: UserSurnames, document: UserDocument) {
     this.id = id;
     this.names = names;
     this.surnames = surnames;
