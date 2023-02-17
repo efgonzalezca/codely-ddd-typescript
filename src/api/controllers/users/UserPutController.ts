@@ -26,7 +26,7 @@ export class UserPutController implements Controller {
   async run(req: CoursePutRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id, names, surnames, document } = req.body;
-      await this.userCreator.run(id, names, surnames, document);
+      await this.userCreator.run({ id, names, surnames, document });
       res.status(httpStatus.CREATED).send();
     } catch(err) {
       next(err)

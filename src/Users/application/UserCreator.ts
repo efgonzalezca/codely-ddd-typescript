@@ -6,6 +6,7 @@ import { UserSurnames } from '../domain/UserSurnames';
 import { UserDocument } from '../domain/UserDocument';
 import { UserRepository } from '../domain/UserRepository';
 import { UserId } from '../../shared/config/domain/Users/UserId';
+import { CreateUserRequest } from './CreateUserRequest';
 
 export class UserCreator {
   private readonly repository: UserRepository;
@@ -18,8 +19,13 @@ export class UserCreator {
     }
   }
 
-  async run(id: UserId, names: UserNames, surnames: UserSurnames, document: UserDocument): Promise<void> {
-    const user = new User(id, names, surnames, document);
+  async run(request: CreateUserRequest): Promise<void> {
+    const user = new User({ 
+      id: new UserId(request.id),
+      names: new UserNames(request.names),
+      surnames: new UserSurnames(request.surnames),
+      document: new UserDocument(request.document)
+    });
     return this.repository.save(user);
   }
 }
