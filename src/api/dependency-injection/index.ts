@@ -7,6 +7,8 @@ import { MongoUserRepository } from '../../Users/infrastructure/persistence/Mong
 import { MongoConfigFactory } from '../../shared/infrastructure/persistence/mongo/MongoConfigFactory';
 import { MongoClientFactory } from '../../shared/infrastructure/persistence/mongo/MongoClientFactory';
 
+import { MongoEnvironmentArranger } from '../../../tests/shared/infrastructure/mongo/MongoEnvironmentArranger';
+
 const container = new ContainerBuilder();
 
 container
@@ -33,5 +35,8 @@ container
 container
   .register('api.controllers.users.UserPutController', UserPutController)
   .addArgument(container.get('users.application.UserCreator'))
+
+container.register('app.EnvironmentArranger', MongoEnvironmentArranger)
+  .addArgument(container.get('app.ConnectionManager'))
 
 export default container;
