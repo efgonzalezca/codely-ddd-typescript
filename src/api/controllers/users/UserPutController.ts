@@ -2,7 +2,6 @@ import httpStatus from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 
 import { Controller } from '../../types';
-import container from '../../dependency-injection';
 import { UserCreator } from '../../../Users/application/UserCreator';
 
 type CoursePutRequest = Request & {
@@ -16,11 +15,7 @@ type CoursePutRequest = Request & {
 
 export class UserPutController implements Controller {
   constructor(private userCreator: UserCreator) {
-    if(typeof userCreator === 'string') {
-      this.userCreator = container.get('users.application.UserCreator');
-    } else {
-      this.userCreator = userCreator;
-    }
+    this.userCreator = userCreator;
   }
 
   async run(req: CoursePutRequest, res: Response, next: NextFunction): Promise<void> {

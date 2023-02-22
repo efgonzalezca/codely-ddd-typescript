@@ -1,5 +1,5 @@
 import { UserNamesLengthExceeded } from './UserNamesLengthExceeded';
-import { StringValueObject } from '../../shared/config/domain/value-object/StringValueObject';
+import { StringValueObject } from '../../shared/domain/value-object/StringValueObject';
 
 export class UserNames extends StringValueObject {
   constructor(value: string) {

@@ -2,7 +2,7 @@ import { User } from '../../../../src/Users/domain/User';
 import { UserNames } from '../../../../src/Users/domain/UserNames';
 import { UserDocument } from '../../../../src/Users/domain/UserDocument';
 import { UserSurnames } from '../../../../src/Users/domain/UserSurnames';
-import { UserId } from '../../../../src/shared/config/domain/Users/UserId';
+import { UserId } from '../../../../src/shared/domain/Users/UserId';
 import { FileUserRepository } from '../../../../src/Users/infrastructure/persistence/FileUserRepository';
 
 describe('FileUserRepository', () => {

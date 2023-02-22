@@ -1,5 +1,6 @@
-import { deserialize, serialize } from 'bson';
 import { writeFile, readFile } from 'fs/promises';
+
+import { deserialize, serialize } from 'bson';
 
 import { User } from '../../domain/User';
 import { UserRepository } from '../../domain/UserRepository';

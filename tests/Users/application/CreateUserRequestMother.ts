@@ -5,7 +5,7 @@ import { UserSurnamesMother } from '../domain/UserSurnamesMother';
 import { UserDocumentMother } from '../domain/UserDocumentMother';
 import { UserDocument } from '../../../src/Users/domain/UserDocument';
 import { UserSurnames } from '../../../src/Users/domain/UserSurnames';
-import { UserId } from '../../../src/shared/config/domain/Users/UserId';
+import { UserId } from '../../../src/shared/domain/Users/UserId';
 import { CreateUserRequest } from '../../../src/Users/application/CreateUserRequest'
 
 export class CreateUserRequestMother {
