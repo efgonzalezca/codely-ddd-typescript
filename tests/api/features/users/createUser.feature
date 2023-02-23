@@ -4,10 +4,10 @@ Feature: Create a new user
   I want to create a new user
 
   Scenario: A valid non existing user
-    Given I send a PUT request to "/users/5fc79d389bdef8041fa3b6d7" with body:
+    Given I send a PUT request to "/users/07e845a9-3241-4dc7-8887-0426f10b9857" with body:
     """
     {
-      "id": "5fc79d389bdef8041fa3b6d7",
+      "id": "07e845a9-3241-4dc7-8887-0426f10b9857",
       "names": "Efraín",
       "surnames": "González",
       "document": "1053850398"
@@ -17,10 +17,10 @@ Feature: Create a new user
     And the response should be empty
 
   Scenario: An invalid non existing user
-    Given I send a PUT request to "/users/5fc79d389bdef8041fa3b6d7" with body:
+    Given I send a PUT request to "/users/07e845a9-3241-4dc7-8887-0426f10b9857" with body:
     """
     {
-      "id": "5fc79d389bdef8041fa3b6d7",
+      "id": "07e845a9-3241-4dc7-8887-0426f10b9857",
       "names": "Efraín",
       "surnames": "González",
       "document": 1053850398

@@ -5,8 +5,8 @@ import express, { Application, json, Router } from 'express';
 
 import { Sockets } from './Sockets';
 import { registerRoutes } from '../routes';
-import config from '../../shared/config';
 import { errorHandler, routeHandler } from '../middlewares';
+import appConfig from '../../shared/infrastructure/config';
 
 export class Server {
   private app: Application;
@@ -15,7 +15,7 @@ export class Server {
   private io: IOServer;
 
   constructor() {
-    this.port = config.port;
+    this.port = appConfig.get('port').toString();
     this.app = express();
     this.httpServer = new HTTPServer(this.app);
     this.io = new IOServer(this.httpServer, {

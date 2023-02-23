@@ -11,5 +11,4 @@ export const  validatorHandler = (req: Request, res: Response, next: NextFunctio
   return res.status(httpStatus.UNPROCESSABLE_ENTITY).json({
     errors: errors
   })
-  return next(errors);
 }

@@ -1,24 +1,33 @@
-import { User } from '../../../src/Users/domain/User';
+import { UserMother } from '../domain/UserMother';
+import { CreateUserRequestMother } from './CreateUserRequestMother';
 import { UserRepositoryMock } from '../__mocks__/UserRepositoryMock';
 import { UserCreator } from '../../../src/Users/application/UserCreator';
+import { UserNamesLengthExceeded } from '../../../src/Users/domain/UserNamesLengthExceeded';
+
+let repository: UserRepositoryMock;
+let creator: UserCreator;
+
+beforeEach(() => {
+  repository = new UserRepositoryMock();
+  creator = new UserCreator(repository);
+})
 
 describe('UserCreator', () => {
-  let repository: UserRepositoryMock;
+  it('should create a valid user', async () => {;
+    const request = CreateUserRequestMother.random();
+    const user = UserMother.fromRequest(request);
+    await creator.run(request);
 
-  beforeEach(() => {
-    repository = new UserRepositoryMock();
+    repository.assertSaveHaveBeenCalledWith(user);
   })
 
-  it('should create a valid user', async () => {
-    const creator = new UserCreator(repository);
-    const id = '5fc79d389bdef8041fa3b6d7';
-    const names = 'Efraín';
-    const surnames = 'González';
-    const document = '1053850398';
-    const expectedUser = new User(id, names, surnames, document);
+  it('should throw error if course name length is exceeded', async () => {
+    expect(() => {
+      const request = CreateUserRequestMother.invalidRequest();
+      const user = UserMother.fromRequest(request);
+      creator.run(request);
 
-    await creator.run(id, names, surnames, document);
-
-    repository.assertSaveHaveBeenCalledWith(expectedUser);
-  })
+      repository.assertSaveHaveBeenCalledWith(user);
+    }).toThrow(UserNamesLengthExceeded);
+  });
 })
