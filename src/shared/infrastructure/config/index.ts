@@ -46,6 +46,8 @@ const appConfig = convict({
   }
 });
 
-appConfig.loadFile([__dirname + '/default.json', __dirname + '/' + appConfig.get('env') + '.json']);
+if(appConfig.get('env') !== 'production') {
+  appConfig.loadFile([__dirname + '/default.json', __dirname + '/' + appConfig.get('env') + '.json']);
+}
 
 export default appConfig;

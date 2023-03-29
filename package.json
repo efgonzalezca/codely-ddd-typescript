@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/api/index.ts",
+    "start": "cross-env NODE_ENV=production node ./dist/src/api/index.js",
     "test": "npm run test:unit && npm run test:features",
     "test:features": "cross-env NODE_ENV=test npx cucumber-js -p api --publish",
-    "test:unit": "cross-env NODE_ENV=test jest"
+    "test:unit": "cross-env NODE_ENV=test jest",
+    "tsc": "npx tsc"
   },
   "keywords": [],
   "author": "",

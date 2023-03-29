@@ -18,7 +18,7 @@ describe('FileUserRepository', () => {
 
     await repository.save(expectedUser);
 
-    const user = await repository.search(expectedUser.id.value);
+    const user = await repository.search(expectedUser.id);
     expect(user).toEqual(expectedUser);
   })
 })
