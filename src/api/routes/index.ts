@@ -2,8 +2,8 @@ import { sync } from 'glob';
 import { Router } from 'express';
 
 const pathByOs = (osReference: string) => osReference === 'win32'
-  ? `${ __dirname }/**/*.route.*`.replace(/\\/g, '/')
-  : `${ __dirname }/**/*.route.*`
+  ? `${ __dirname }/**/*.route.*[js|ts]`.replace(/\\/g, '/')
+  : `${ __dirname }/**/*.route.*[js|ts]`
 
 export const registerRoutes = (router: Router) => {
   const routes = sync(pathByOs(process.platform));
