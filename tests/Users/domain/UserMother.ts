@@ -11,7 +11,7 @@ import { CreateUserRequest } from '../../../src/Users/application/CreateUserRequ
 
 export class UserMother {
   static create(id: UserId, names: UserNames, surnames: UserSurnames, document: UserDocument): User {
-    return new User({ id, names, surnames, document });
+    return new User(id, names, surnames, document);
   }
 
   static fromRequest(request: CreateUserRequest): User {

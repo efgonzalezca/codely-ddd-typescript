@@ -14,12 +14,12 @@ export class UserCreator {
   }
 
   async run(request: CreateUserRequest): Promise<void> {
-    const user = new User({ 
-      id: new UserId(request.id),
-      names: new UserNames(request.names),
-      surnames: new UserSurnames(request.surnames),
-      document: new UserDocument(request.document)
-    });
+    const user = new User(
+      new UserId(request.id),
+      new UserNames(request.names),
+      new UserSurnames(request.surnames),
+      new UserDocument(request.document)
+    );
     return this.repository.save(user);
   }
 }
