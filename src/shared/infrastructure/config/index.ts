@@ -42,8 +42,40 @@ const appConfig = convict({
       format: String,
       env: 'LOG_FILE',
       default: `${ __dirname }/../../logs/debug.log`
+    }
+  },
+  typeorm: {
+    host: {
+      doc: 'The database host',
+      format: String,
+      env: 'TYPEORM_HOST',
+      default: 'localhost'
     },
-  }
+    port: {
+      doc: 'The database port',
+      format: Number,
+      env: 'TYPEORM_PORT',
+      default: 5432
+    },
+    username: {
+      doc: 'The database username',
+      format: String,
+      env: 'TYPEORM_USERNAME',
+      default: 'efgonzalezca'
+    },
+    password: {
+      doc: 'The database password',
+      format: String,
+      env: 'TYPEORM_PASSWORD',
+      default: 'efgonzalezca'
+    },
+    database: {
+      doc: 'The database name',
+      format: String,
+      env: 'TYPEORM_DATABASE',
+      default: 'app-dev'
+    }
+  },
 });
 
 if(appConfig.get('env') !== 'production') {

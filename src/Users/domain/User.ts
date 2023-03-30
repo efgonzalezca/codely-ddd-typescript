@@ -4,13 +4,6 @@ import { UserDocument } from './UserDocument';
 import { UserId } from '../../shared/domain/Users/UserId';
 import { AggregateRoot } from '../../shared/domain/value-object/AggregateRoot';
 
-interface UserInterface {
-  id: UserId,
-  names: UserNames,
-  surnames: UserSurnames,
-  document: UserDocument
-}
-
 interface UserPlainDataInterface {
   id: string,
   names: string,
@@ -23,7 +16,7 @@ export class User extends AggregateRoot {
   readonly surnames: UserSurnames;
   readonly document: UserDocument;
 
-  constructor({ id, names, surnames, document }: UserInterface) {
+  constructor(id: UserId, names: UserNames, surnames: UserSurnames, document: UserDocument) {
     super();
     this.id = id;
     this.names = names;
@@ -32,12 +25,12 @@ export class User extends AggregateRoot {
   }
 
   static fromPrimitives(plainData: UserPlainDataInterface): User {
-    return new User({
-      id: new UserId(plainData.id),
-      names: new UserNames(plainData.names),
-      surnames: new UserSurnames(plainData.surnames),
-      document: new UserDocument(plainData.document)
-    })
+    return new User(
+      new UserId(plainData.id),
+      new UserNames(plainData.names),
+      new UserSurnames(plainData.surnames),
+      new UserDocument(plainData.document)
+    )
   }
 
   toPrimitives(): any {

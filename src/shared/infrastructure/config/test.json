@@ -1,3 +1,5 @@
 {
-  "mongo": { "url": "mongodb://localhost:27017", "name": "app-test"}
+  "mongo": { "url": "mongodb://localhost:27017", "name": "app-test"},
+  "typeorm": {"database": "app-test"}
+
 }

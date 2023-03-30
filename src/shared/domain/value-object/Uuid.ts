@@ -4,12 +4,10 @@ import { ValueObject } from './ValueObject';
 import { InvalidArgumentError } from './InvalidArgumentError';
 
 export class Uuid extends ValueObject<string> {
-  readonly value: string;
 
   constructor(value: string) {
     super(value);
     this.ensureIsValidUuid(value);
-    this.value = value;
   }
 
   static random(): Uuid {

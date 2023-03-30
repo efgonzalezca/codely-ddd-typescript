@@ -7,12 +7,11 @@ import { FileUserRepository } from '../../../../src/Users/infrastructure/persist
 
 describe('FileUserRepository', () => {
   it('should save a user', async () => {
-    const expectedUser = new User({
-      id: new UserId('07e845a9-3241-4dc7-8887-0426f10b9857'),
-      names: new UserNames('Efraín'),
-      surnames: new UserSurnames('González'),
-      document: new UserDocument('1053850398')
-    }
+    const expectedUser = new User(
+      new UserId('07e845a9-3241-4dc7-8887-0426f10b9857'),
+      new UserNames('Efraín'),
+      new UserSurnames('González'),
+      new UserDocument('1053850398')
     );
     const repository = new FileUserRepository();
 
