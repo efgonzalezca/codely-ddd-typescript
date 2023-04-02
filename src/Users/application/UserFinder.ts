@@ -1,5 +1,5 @@
-import { UserId } from '../../shared/domain/Users/UserId';
 import { User } from '../domain/User';
+import { UserId } from '../../shared/domain/Users/UserId';
 import { UserRepository } from '../domain/UserRepository';
 
 export class UserFinder {

@@ -2,6 +2,7 @@ import { UserNames } from './UserNames';
 import { UserSurnames } from './UserSurnames';
 import { UserDocument } from './UserDocument';
 import { UserId } from '../../shared/domain/Users/UserId';
+import { UserCreatedDomainEvent } from './UserCreatedDomainEvent';
 import { AggregateRoot } from '../../shared/domain/value-object/AggregateRoot';
 
 interface UserPlainDataInterface {
@@ -22,6 +23,21 @@ export class User extends AggregateRoot {
     this.names = names;
     this.surnames = surnames;
     this.document = document;
+  }
+
+  static create(id: UserId, names: UserNames, surnames: UserSurnames, document: UserDocument): User {
+    const user = new User(id, names, surnames, document);
+ 
+    user.record(
+      new UserCreatedDomainEvent({
+        aggregateId: user.id.value,
+        names: user.names.value,
+        surnames: user.surnames.value,
+        document: user.document.value,
+      })
+    );
+
+    return user;
   }
 
   static fromPrimitives(plainData: UserPlainDataInterface): User {

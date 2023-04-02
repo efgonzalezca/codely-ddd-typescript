@@ -5,8 +5,11 @@ import express, { Application, json, Router } from 'express';
 
 import { Sockets } from './Sockets';
 import { registerRoutes } from '../routes';
-import { errorHandler, routeHandler } from '../middlewares';
+import container from '../dependency-injection';
 import appConfig from '../../shared/infrastructure/config';
+import { errorHandler, routeHandler } from '../middlewares';
+import { EventBus } from '../../shared/domain/EventBus';
+import { DomainEventSubscribers } from '../../shared/infrastructure/EventBus/DomainEventSubscribers';
 
 export class Server {
   private app: Application;
@@ -29,6 +32,11 @@ export class Server {
     new Sockets(this.io)
   }
 
+  configEventBus() {
+    const eventBus = container.get<EventBus>('app.EventBus');
+    eventBus.addSubscribers(DomainEventSubscribers.from(container));
+  }
+
   middlewares() {
     this.app.use(cors({origin: '*'}));
     this.app.use(json());
@@ -43,6 +51,7 @@ export class Server {
     return new Promise(resolve => {
       this.middlewares();
       this.configSockets();
+      this.configEventBus();
       this.httpServer?.listen(this.port, () => {
         console.log(`Server running on: http://localhost:${this.port}`);
       })
