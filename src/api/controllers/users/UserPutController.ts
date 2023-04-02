@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { Controller } from '../../types';
 import { UserCreator } from '../../../Users/application/UserCreator';
 
-type CoursePutRequest = Request & {
+type UserPutRequest = Request & {
   body: {
     id: string,
     names: string,
@@ -18,7 +18,7 @@ export class UserPutController implements Controller {
     this.userCreator = userCreator;
   }
 
-  async run(req: CoursePutRequest, res: Response, next: NextFunction): Promise<void> {
+  async run(req: UserPutRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { id, names, surnames, document } = req.body;
       await this.userCreator.run({ id, names, surnames, document });
